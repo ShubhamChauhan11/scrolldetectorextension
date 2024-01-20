@@ -1,0 +1,33 @@
+{
+  "name": "Scroll Detector",
+  "description": "scroll detector extension",
+  "version": "1.0",
+  "manifest_version": 3,
+
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["contentScript.js"],
+      "exclude_matches": ["*://twitter.com/*"],
+      "css": ["script.css"]
+    },
+    {
+      "matches": ["*://twitter.com/*"],
+      "js": ["twitterContentScript.js"]
+    }
+  ],
+  "permissions": ["activeTab", "scripting", "tabs"],
+
+  "action": {
+    "default_title": "Tweet Scroll",
+
+    "default_icon": {
+      "16": "tweet.png",
+      "48": "tweet.png"
+    },
+    "default_popup": "index.html"
+  }
+}
